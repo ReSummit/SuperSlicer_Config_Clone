@@ -6,7 +6,7 @@ Some use cases include making the print speed parameters of all profiles the sam
 
 ## Requirements
 ---
-This script does not utilize many dependencies due to its simplicity. If you want to take advantage of colored interfaces to guide you, install `colorama` with the command:
+This script does not utilize many dependencies due to its simplicity. The only requirement is to install `colorama` with the command:
 
 ```
 python -m pip install colorama

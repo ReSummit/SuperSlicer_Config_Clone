@@ -1,29 +1,8 @@
+#!/usr/bin/env python
 # Program to copy parameters between duplicate print profiles
 
 import re, sys, os
 import colorama
-import configparser
-
-def print_color(text="", color=colorama.Fore.WHITE, background=colorama.Back.RESET):
-    print(color + background + text + colorama.Fore.WHITE + colorama.Back.RESET)
-
-def print_error():
-    print_color("Invalid input, try again", color=colorama.Fore.RED)
-
-def print_length_error():
-    print_color("List of inputs invalid. Please manually handle differences. Exiting program.", color=colorama.Fore.RED)
-
-# Open the file for read
-file = open("./SuperSlicer_config_bundle.ini", "rb")
-
-# Each profile is separated with regex "\[print:.*\]"
-# Find all matches as a list of regex objects
-matches = re.findall(b"\[print:.*\]", file.read())
-file.seek(0)
-miter = re.finditer(b"\[print:.*\]", file.read())
-matches_iter = []
-for match in miter:
-    matches_iter.append(match)
 
 # Ask user which profiles to evaluate
 print_color("Which profiles would you like to deduplicate?", colorama.Fore.YELLOW)
