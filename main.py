@@ -4,6 +4,31 @@
 import re, sys, os
 import colorama
 
+def print_color(text="", color=colorama.Fore.WHITE, background=colorama.Back.RESET):
+    print(color + background + text + colorama.Fore.WHITE + colorama.Back.RESET)
+
+def print_error():
+    print_color("Invalid input, try again", color=colorama.Fore.RED)
+
+def print_length_error():
+    print_color("List of inputs invalid. Please manually handle differences. Exiting program.", color=colorama.Fore.RED)
+
+# Open the file for read
+if os.path.exists("SuperSlicer_config_bundle.ini"):
+    file = open("./SuperSlicer_config_bundle.ini", "rb")
+else:
+    print_color("Please have the file 'SuperSlicer_config_bundle.ini' in the same directory as this program.", color=colorama.Fore.RED)
+    sys.exit()
+
+# Each profile is separated with regex "\[print:.*\]"
+# Find all matches as a list of regex objects
+matches = re.findall(b"\[print:.*\]", file.read())
+file.seek(0)
+miter = re.finditer(b"\[print:.*\]", file.read())
+matches_iter = []
+for match in miter:
+    matches_iter.append(match)
+
 # Ask user which profiles to evaluate
 print_color("Which profiles would you like to deduplicate?", colorama.Fore.YELLOW)
 # Print all matches prepended with a number
